@@ -10,7 +10,7 @@ Gem::Specification.new do |s|
 
   s.post_install_message = '
 -------------------------------------------------------------
-Follow me on Twitter: http://twitter.com/codyrobbins
+Follow me on Twitter! http://twitter.com/codyrobbins
 -------------------------------------------------------------
 
 '

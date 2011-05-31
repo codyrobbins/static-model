@@ -67,6 +67,17 @@ To use this class in a Rails controller, you’d do something like
       end
     end
 
+Testing
+-------
+
+There is an RSpec shared example group named `StaticModel` that you can use to test your subclasses to ensure they contain all the necessary behavior. To make it available simply paste
+
+    require('spec/static_model')
+
+into `spec/spec_helper.rb`. Then in your subclass’s spec simply use
+
+    it_should_behave_like('StaticModel')
+
 Colophon
 --------
 

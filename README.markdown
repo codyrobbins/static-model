@@ -72,7 +72,8 @@ Colophon
 
 ### See also
 
-If you like this gem, you may also want to check out [Declarative Find](http://codyrobbins.com/software/declarative-find), [Create New](http://codyrobbins.com/software/create-new), [Save Changes To](http://codyrobbins.com/software/save-changes-to), and [HTTP Error](http://codyrobbins.com/software/http-error).
+If you like this gem, you may also want to check out [Active Model Email Validator](http://codyrobbins.com/software/active-model-email-validator), [Email Test Helpers](http://codyrobbins.com/software/email-test-helpers), or [HTTP Error](http://codyrobbins.com/software/http\
+-error).
 
 ### Tested with
 

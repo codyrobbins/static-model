@@ -2,7 +2,7 @@
 
 Gem::Specification.new do |s|
   s.name     = 'static-model'
-  s.version  = '1.0'
+  s.version  = '1.1'
   s.summary  = 'A base non–database-backed model for Rails.'
   s.homepage = 'http://codyrobbins.com/software/static-model'
   s.author   = 'Cody Robbins'

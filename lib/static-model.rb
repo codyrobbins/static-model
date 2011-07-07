@@ -109,8 +109,8 @@ class StaticModel
   # @param error [String] The error message.
   # @param attribute [Symbol] The attribute of the model to place the error message on.
   # @return [boolean] Returns `false` in order to halt any validation chain it may be invoked from.
-  def add_error_and_return_false(error, attribute = :base)
-    errors.add(attribute, error)
+  def add_error_and_return_false(error, attribute = :base, options = {})
+    errors.add(attribute, error, options)
     false
   end
 end

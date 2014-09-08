@@ -10,73 +10,80 @@ Example
 
 A user lookup class like the one below could be used as the parent class for a login authenticator or an account password reset initiator. It needs to find a user via their email, which entails validating the presence of the email attribute and providing access to the user that’s consequently looked up.
 
-    class UserLookup < StaticModel
-      # An accessor to allow specifying the email to look up.
-      attr_accessor(:email)
+```ruby
+class UserLookup < StaticModel
+  # An accessor to allow specifying the email to look up.
+  attr_accessor(:email)
 
-      # A reader to allow access to the user that's looked up.
-      attr_reader(:user)
+  # A reader to allow access to the user that's looked up.
+  attr_reader(:user)
 
-      # Require the email attribute.
-      validates(:email,
-                :presence => {:message => 'Email is required.'})
+  # Require the email attribute.
+  validates(:email,
+            :presence => {:message => 'Email is required.'})
 
-      # If the email is present, ensure that a user is associated with it.
-      validate do
-        no_other_errors? && user_exists?
-      end
+  # If the email is present, ensure that a user is associated with it.
+  validate do
+    no_other_errors? && user_exists?
+  end
 
-      # Find the user.
-      def user
-        User.find_by_email(@email)
-      end
+  # Find the user.
+  def user
+    User.find_by_email(@email)
+  end
 
-      # Add an error if no user is found.
-      def user_exists?
-        user ? true : add_email_error_and_return_false
-      end
+  # Add an error if no user is found.
+  def user_exists?
+    user ? true : add_email_error_and_return_false
+  end
 
-      protected
+  protected
 
-      # Add an error.
-      def add_email_error_and_return_false
-        add_error_and_return_false('Email not found', :email)
-      end
-    end
-
+  # Add an error.
+  def add_email_error_and_return_false
+    add_error_and_return_false('Email not found', :email)
+  end
+end
+```
 To use this class in a Rails controller, you’d do something like
 
-    class UserLookupController < ApplicationController
-      def find
-        create_user_lookup
-        do_something if email_valid?
-      end
+```ruby
+class UserLookupController < ApplicationController
+  def find
+    create_user_lookup
+    do_something if email_valid?
+  end
 
-      protected
+  protected
 
-      def create_user_lookup
-        @user_lookup = UserLookup.new(params[:user_lookup])
-      end
+  def create_user_lookup
+    @user_lookup = UserLookup.new(params[:user_lookup])
+  end
 
-      def do_something
-        @user_lookup.user.do_something
-      end
+  def do_something
+    @user_lookup.user.do_something
+  end
 
-      def email_valid?
-        request.post? && @user_lookup.valid?
-      end
-    end
+  def email_valid?
+    request.post? && @user_lookup.valid?
+  end
+end
+```
 
 Testing
 -------
 
 There is an RSpec shared example group named `StaticModel` that you can use to test your subclasses to ensure they contain all the necessary behavior. To make it available simply paste
 
-    require('spec/static_model')
+```ruby
+require('spec/static_model')
+```
 
 into `spec/spec_helper.rb`. Then in your subclass’s spec simply use
 
-    it_should_behave_like('StaticModel')
+```ruby
+it_should_behave_like('StaticModel')
+```
 
 Colophon
 --------
